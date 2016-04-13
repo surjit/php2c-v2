@@ -7,10 +7,12 @@
 class PHP2C
 {
   public $extname = "";
+  public $path;
 
   public function __construct($extname, $source)
   {
     $this->extname = $extname;
+    $this->path = getcwd() . '/ext';
     $this->load($source);
   }
 
@@ -449,12 +451,12 @@ class PHP2C
     $c[] = "";
     $c[] = "/* }}} */";
 
-    file_put_contents($hfile, implode("\n", $h)."\n");
-    file_put_contents($cfile, implode("\n", $c)."\n");
+    file_put_contents($this->path . "/" . $hfile, implode("\n", $h)."\n");
+    file_put_contents($this->path . "/" . $cfile, implode("\n", $c)."\n");
 
     $len = $this->extname;
     $uen = strtoupper($this->extname);
-    file_put_contents("config.m4", "PHP_ARG_ENABLE($len, [whether to enable $len support],
+    file_put_contents($this->path . "/config.m4", "PHP_ARG_ENABLE($len, [whether to enable $len support],
 [  --enable-$len          Enable $len support])
 
 if test \"\$PHP_$uen\" = \"yes\"; then
