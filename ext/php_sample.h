@@ -5,6 +5,6 @@
 
 #include "php.h"
 
-PHP_FUNCTION(hello_world);
+PHP_FUNCTION(hello_world_fx);
 
 #endif

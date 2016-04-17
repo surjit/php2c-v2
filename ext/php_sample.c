@@ -16,15 +16,46 @@
 
 
 static zend_function_entry sample_functions[] = {
-  ZEND_FE(hello_world, NULL)
+  ZEND_FE(hello_world_fx, NULL)
   {NULL, NULL, NULL}
 };
+
+
+ZEND_FUNCTION(hello_world_fx)
+{
+  zval* name;
+
+  if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z", &name) == FAILURE)
+    return;
+
+ zend_print_zval(name, 0);
+}
+
+/* here my clasess */
+
+zend_class_entry *test_ce;
+
+const zend_function_entry test_functions[] = {
+    PHP_FE_END
+};
+
+PHP_MINIT_FUNCTION(sample)
+{
+    zend_class_entry tmp_ce;
+    INIT_CLASS_ENTRY(tmp_ce, "Test", test_functions);
+
+    test_ce = zend_register_internal_class(&tmp_ce TSRMLS_CC);
+
+    return SUCCESS;
+}
+
+/** class end */
 
 zend_module_entry sample_module_entry = {
   STANDARD_MODULE_HEADER,
   "sample",
   sample_functions,
-  NULL,
+  PHP_MINIT(sample),
   NULL,
   NULL,
   NULL,
@@ -36,15 +67,5 @@ zend_module_entry sample_module_entry = {
 #ifdef COMPILE_DL_SAMPLE
 ZEND_GET_MODULE(sample)
 #endif
-
-ZEND_FUNCTION(hello_world)
-{
-  zval* name;
-
-  if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z", &name) == FAILURE)
-    return;
-
-  zend_print_zval(name, 0);
-}
 
 

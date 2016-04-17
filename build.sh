@@ -7,7 +7,7 @@ make clean
 
 make && make install
 
-#/usr/local/apache/bin/apachectl -k restart
+/usr/local/apache/bin/apachectl -k restart
 
 make clean
 
