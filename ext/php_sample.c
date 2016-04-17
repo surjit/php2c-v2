@@ -14,6 +14,7 @@
 #include "zend_ini.h"
 #include "zend_interfaces.h"
 
+
 static zend_function_entry sample_functions[] = {
   ZEND_FE(hello_world, NULL)
   {NULL, NULL, NULL}
@@ -38,6 +39,15 @@ ZEND_GET_MODULE(sample)
 
 ZEND_FUNCTION(hello_world)
 {
-  php_printf("Surjit 2.1 \n");
+  char *english;
+  int len;
+ 
+   if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &english, &len) == FAILURE) {
+        RETURN_NULL();
+   }
+ 
+   php_printf("hello2 %s \n", english);
+   RETURN_TRUE;
 }
+
 
