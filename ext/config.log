@@ -188,20 +188,22 @@ configure:3644: result: x86_64-unknown-linux-gnu
 configure:3664: checking target system type
 configure:3677: result: x86_64-unknown-linux-gnu
 configure:3780: checking for PHP prefix
-configure:3782: result: /home/php-debug
+configure:3782: result: /usr/local
 configure:3784: checking for PHP includes
-configure:3786: result: -I/home/php-debug/include/php -I/home/php-debug/include/php/main -I/home/php-debug/include/php/TSRM -I/home/php-debug/include/php/Zend -I/home/php-debug/include/php/ext -I/home/php-debug/include/php/ext/date/lib
+configure:3786: result: -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib
 configure:3788: checking for PHP extension directory
-configure:3790: result: /home/php-debug/lib/php/extensions/debug-zts-20131226
+configure:3790: result: /usr/local/lib/php/extensions/debug-zts-20131226
 configure:3792: checking for PHP installed headers prefix
-configure:3794: result: /home/php-debug/include/php
+configure:3794: result: /usr/local/include/php
 configure:3797: checking if debug is enabled
 configure:3823: result: yes
 configure:3826: checking if zts is enabled
 configure:3852: result: yes
 configure:3923: checking for re2c
-configure:3953: result: no
-configure:3978: WARNING: You will need re2c 0.13.4 or later if you want to regenerate PHP parsers.
+configure:3939: found /usr/bin/re2c
+configure:3950: result: re2c
+configure:3959: checking for re2c version
+configure:3973: result: 0.16 (ok)
 configure:3992: checking for gawk
 configure:4023: result: no
 configure:3992: checking for nawk
@@ -400,6 +402,7 @@ ac_cv_path_EGREP='/bin/grep -E'
 ac_cv_path_GREP=/bin/grep
 ac_cv_prog_AWK=nawk
 ac_cv_prog_CPP='cc -E'
+ac_cv_prog_RE2C=re2c
 ac_cv_prog_ac_ct_AR=ar
 ac_cv_prog_ac_ct_CC=cc
 ac_cv_prog_ac_ct_RANLIB=ranlib
@@ -433,6 +436,7 @@ lt_lt_cv_sys_global_symbol_to_c_name_address='"sed -n -e '\''s/^: \\([^ ]*\\) \$
 lt_lt_cv_sys_global_symbol_to_cdecl='"sed -n -e '\''s/^. .* \\(.*\\)\$/extern int \\1;/p'\''"'
 php_cv_cc_dashr=no
 php_cv_cc_rpath=yes
+php_cv_re2c_version='0.16 (ok)'
 
 ## ----------------- ##
 ## Output variables. ##
@@ -471,7 +475,7 @@ PACKAGE_URL=''
 PACKAGE_VERSION=''
 PATH_SEPARATOR=':'
 RANLIB='ranlib'
-RE2C='exit 0;'
+RE2C='re2c'
 SED='/bin/sed'
 SHELL='/bin/bash'
 SHLIB_DL_SUFFIX_NAME='so'
@@ -504,7 +508,7 @@ localstatedir='${prefix}/var'
 mandir='${datarootdir}/man'
 oldincludedir='/usr/include'
 pdfdir='${docdir}'
-prefix='/home/php-debug'
+prefix='/usr/local'
 program_transform_name='s,x,x,'
 psdir='${docdir}'
 runstatedir='${localstatedir}/run'

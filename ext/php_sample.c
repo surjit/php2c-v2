@@ -39,15 +39,12 @@ ZEND_GET_MODULE(sample)
 
 ZEND_FUNCTION(hello_world)
 {
-  char *english;
-  int len;
- 
-   if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &english, &len) == FAILURE) {
-        RETURN_NULL();
-   }
- 
-   php_printf("hello2 %s \n", english);
-   RETURN_TRUE;
+  zval* name;
+
+  if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z", &name) == FAILURE)
+    return;
+
+  zend_print_zval(name, 0);
 }
 
 
