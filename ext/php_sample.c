@@ -35,7 +35,44 @@ ZEND_FUNCTION(hello_world_fx)
 
 zend_class_entry *test_ce;
 
+PHP_METHOD(Test, getFoo)
+{
+    zval *obj, *foo_value;
+
+    if (zend_parse_parameters_none() == FAILURE) {
+        return;
+    }
+
+    obj = getThis();
+
+    foo_value = zend_read_property(test_ce, obj, "foo", sizeof("foo") - 1, 1 TSRMLS_CC);
+
+    RETURN_ZVAL(foo_value, 1, 0);
+}
+
+PHP_METHOD(Test, setFoo)
+{
+    zval *obj, *new_foo_value;
+
+    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z", &new_foo_value) == FAILURE) {
+        return;
+    }
+
+    obj = getThis();
+
+    zend_update_property(test_ce, obj, "foo", sizeof("foo") - 1, new_foo_value TSRMLS_CC);
+}
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_void, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_set, 0, 0, 1)
+    ZEND_ARG_INFO(0, value)
+ZEND_END_ARG_INFO()
+
 const zend_function_entry test_functions[] = {
+    PHP_ME(Test, getFoo, arginfo_void, ZEND_ACC_PUBLIC)
+    PHP_ME(Test, setFoo, arginfo_set, ZEND_ACC_PUBLIC)
     PHP_FE_END
 };
 
