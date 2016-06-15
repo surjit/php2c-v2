@@ -26,9 +26,11 @@ How you can help to improve the application:
 
 - Feel free to create branches in the project's repository on GITHUB or send me
   patches or pull requests for your changes.
-  
-  The repository can be found here: http://github.com/megous/php2c/tree
+
+  The repository can be found here: https://github.com/surjit/php2c-v2
 
 License: Public Domain
 
-  ~ Ondřej Jirman <megous@megous.com>, 2009
+  ~ Ond?ej Jirman <megous@megous.com>, 2009
+  ~ Surjit Sidhu <mail@surjitsidhu.com>, 2016
+
